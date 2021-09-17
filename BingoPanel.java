@@ -50,7 +50,7 @@ public class BingoPanel extends JPanel implements KeyListener, MouseListener {
 	}
 
 	@Override
-	public void paint(Graphics graphics) throws IOException {
+	public void paint(Graphics graphics) {
 		if(g == null) {
 			g = graphics;
 		}
