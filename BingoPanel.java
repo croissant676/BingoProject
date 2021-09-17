@@ -14,19 +14,13 @@ import java.awt.image.*;
 
 public class BingoPanel extends JPanel implements KeyListener, MouseListener {
 	
-	private BufferedImage pic;
 	private BingoCard card;
 	private Graphics g = null;
 	
 	public BingoPanel(BingoCard card) {
 		super();
 		this.card = card;
-		try {
-			pic = ImageIO.read(new File("BingoTemplate.png"));
-		} catch (Exception E) {
-			System.out.println("Exception Error");
-			return;
-		}
+		
 		addMouseListener(this);
 	}
 	
@@ -51,10 +45,12 @@ public class BingoPanel extends JPanel implements KeyListener, MouseListener {
 
 	@Override
 	public void paint(Graphics graphics) {
-		if(g == null) {
-			g = graphics;
-		}
-		g.drawImage(pic, 0, 0, 715, 863, null);
+		try {
+            graphics.drawImage(ImageIO.read(Objects.requireNonNull(getClass().getResource("BingoTemplate.png"))), 0, 0, null);
+            drawText(graphics);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 		drawText(g);
 		g.setColor(Color.red);
 		g.fillOval(900, 75, 100, 100);			//900-1000, 75-175
