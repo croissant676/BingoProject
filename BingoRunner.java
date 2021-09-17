@@ -1,44 +1,48 @@
-import javax.swing.*;
-import java.awt.*;
-import java.util.regex.*;
+public class BingoTile {
 
-public class BingoRunner {
+	private int value;
+	private boolean crossedOff;
 	
-	private static Pattern pattern = Pattern.compile("-?\\d+(\\.\\d+)?");
-	
-	public static void main(String[] args) {
-		JFrame frame = new JFrame("Bingo Frame");
-		JPanel openingPanel = new JPanel();
-		JTextField field = new JTextField(25);
-		JButton button = new JButton("Submit seed");
-		button.addActionListener(e -> {
-			String string = field.getText();
-			if (string != null && pattern.matcher(string).matches()) {
-				long number = Long.parseLong(string);
-				BingoCard.createRandom(number);
-				System.out.println(number);
-				createBingoPanel(frame);
-				openingPanel.removeAll();
-				openingPanel.setSize(1, 1);
-			} else {
-				field.setText(string + " is not a valid number.");
-			}
-		});
-		openingPanel.add(field);
-		openingPanel.add(button);
-		frame.add(openingPanel);
-		frame.setVisible(true);
-		frame.setSize(1000, 150);
-		frame.setResizable(false);
+	public BingoTile(int value) {
+		this.value = value;
 	}
 	
-	private static void createBingoPanel(JFrame frame) {
-		BingoCard card = new BingoCard();
-		BingoPanel panel = new BingoPanel(card);
-		frame.add(panel);
-		frame.setSize(1100, 1000);
-		frame.repaint();
+	public int getValue() {
+		return value;
+	}
+	
+	public void setValue(int value) {
+		this.value = value;
+	}
+	
+	public boolean isCrossedOff() {
+		return crossedOff;
+	}
+	
+	public void setCrossedOff(boolean crossedOff) {
+		this.crossedOff = crossedOff;
+	}
+	
+	
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof BingoTile bingoTile)) return false;
+		if (value != bingoTile.value) return false;
+		return crossedOff == bingoTile.crossedOff;
+	}
+	
+	
+	public int hashCode() {
+		int result = value;
+		result = 31 * result + (crossedOff ? 1 : 0);
+		return result;
+	}
+	
+	
+	public String toString() {
+		return "BingoTile{" +
+				"value=" + value +
+				", crossedOff=" + crossedOff +
+				'}';
 	}
 }
-
-
