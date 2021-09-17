@@ -13,10 +13,10 @@ import java.awt.image.*;
 
 
 public class BingoPanel extends JPanel implements KeyListener, MouseListener {
-	private BufferedImage pic;
 	
+	private BufferedImage pic;
 	private BingoCard card;
-	private Graphics g;
+	private Graphics g = null;
 	
 	public BingoPanel(BingoCard card) {
 		super();
@@ -30,8 +30,6 @@ public class BingoPanel extends JPanel implements KeyListener, MouseListener {
 		addMouseListener(this);
 	}
 	
-	
-	
 	public void keyTyped(KeyEvent e) {}
 	public void keyPressed(KeyEvent e) {}
 	public void keyReleased(KeyEvent e) {}
@@ -40,7 +38,6 @@ public class BingoPanel extends JPanel implements KeyListener, MouseListener {
 	public void mouseEntered(MouseEvent e) {}
 	public void mouseExited(MouseEvent e) {}
 	public void mouseClicked(MouseEvent e) {
-		
 		int x = e.getX();
 		int y = e.getY();
 		double distance = Math.sqrt((x-950)*(x-950)+(y-125)*(y-125));
@@ -50,29 +47,24 @@ public class BingoPanel extends JPanel implements KeyListener, MouseListener {
 			
 		}
 		repaint();
-		
 	}
 
-	
-	
-	public void paint() throws IOException {
-		
+	@Override
+	public void paint(Graphics graphics) throws IOException {
+		if(g == null) {
+			g = graphics;
+		}
 		g.drawImage(pic, 0, 0, 715, 863, null);
 		drawText(g);
-		
-		
 		g.setColor(Color.red);
 		g.fillOval(900, 75, 100, 100);			//900-1000, 75-175
 //		g.drawString("TEST", 900, 75);
 		g.setColor(Color.white);
 		g.setFont(new Font("", Font.PLAIN, 30));
 		g.drawString("Ball", 925, 140);
-		
 		g.setColor(new Color(0, 0, 255));
 		g.fillRect(900, 275, 120, 60);
-		
 		repaint();
-		
 	}
 	
 	
