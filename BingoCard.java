@@ -87,6 +87,7 @@ public class BingoPanel extends JPanel implements KeyListener, MouseListener {
 	private void drawText(Graphics numbers) {
 		Font font = new Font("Times New Roman", Font.PLAIN, 40);
 		numbers.setFont(font);
+		numbers.setColor(new Color(0, 0, 255));
 		for (int row = 0; row < 5; row++) {
 			for (int col = 0; col < 5; col++) {
 				if(!(row == 2 && col == 2)) numbers.drawString(Integer.toString(card.getTile(row, col).getValue()), row * 126 + 89, col * 129 + 227);
