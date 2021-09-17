@@ -51,15 +51,14 @@ public class BingoPanel extends JPanel implements KeyListener, MouseListener {
         } catch (IOException e) {
             e.printStackTrace();
         }
-		drawText(g);
-		g.setColor(Color.red);
-		g.fillOval(900, 75, 100, 100);			//900-1000, 75-175
-//		g.drawString("TEST", 900, 75);
-		g.setColor(Color.white);
-		g.setFont(new Font("", Font.PLAIN, 30));
-		g.drawString("Ball", 925, 140);
-		g.setColor(new Color(0, 0, 255));
-		g.fillRect(900, 275, 120, 60);
+		graphics.setColor(Color.red);
+		graphics.fillOval(900, 75, 100, 100);			//900-1000, 75-175
+//		graphics.drawString("TEST", 900, 75);
+		graphics.setColor(Color.white);
+		graphics.setFont(new Font("", Font.PLAIN, 30));
+		graphics.drawString("Ball", 925, 140);
+		graphics.setColor(new Color(0, 0, 255));
+		graphics.fillRect(900, 275, 120, 60);
 		repaint();
 	}
 	
